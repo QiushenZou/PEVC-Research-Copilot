@@ -1,0 +1,6 @@
+interface:
+  display_name: "PE/VC 企业尽调"
+  short_description: "拆解目标公司的业务、客户、技术、财务质量与关键尽调问题"
+  default_prompt: "Use $pevc-company-diligence to conduct an evidence-backed company diligence review and identify the questions most likely to change the investment decision."
+policy:
+  allow_implicit_invocation: true
