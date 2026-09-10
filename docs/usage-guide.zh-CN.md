@@ -1,4 +1,4 @@
-# PE/VC Research Skills 完整使用教程
+# PEVC Research Copilot 完整使用教程
 
 这份教程说明如何从零开始使用整套 Skill，也说明什么时候只用其中一个。
 

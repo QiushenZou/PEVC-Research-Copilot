@@ -1,6 +1,6 @@
-# PE/VC Research Skills
+# PEVC Research Copilot
 
-一套面向真实一级市场工作的本地投研 Skill 系统：从读 BP、项目初筛、产业链研究、公司尽调，到 IC Memo，始终保留来源、口径、反向证据和待验证事项。
+一套面向真实一级市场工作的开源 AI 投研工作流：以六个可组合 Codex Skills 覆盖读 BP、项目初筛、产业链研究、公司尽调与 IC Memo，并始终保留来源、口径、反向证据和待验证事项。
 
 ## 这套系统解决什么问题
 
