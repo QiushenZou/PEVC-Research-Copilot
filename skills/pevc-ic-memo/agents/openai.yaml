@@ -1,0 +1,6 @@
+interface:
+  display_name: "PE/VC IC Memo"
+  short_description: "把尽调证据转化为覆盖初筛、预审、终审与更新的投委会决策备忘录"
+  default_prompt: "Use $pevc-ic-memo to produce a decision-first, evidence-backed PE or VC committee memo at the appropriate screening, preliminary, final, or update stage."
+policy:
+  allow_implicit_invocation: true
