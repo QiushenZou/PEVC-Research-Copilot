@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>__MAP_TITLE__ · 产业链地图</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden}body{background:#080d19;color:#dce9fa;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;user-select:none}button,input{font:inherit}#viewport{position:relative;width:100%;height:100%;overflow:hidden;touch-action:none;cursor:grab}body.dragging #viewport{cursor:grabbing}#world{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}#edges{position:absolute;left:0;top:0;overflow:visible;pointer-events:none}.edge{transition:stroke .16s,stroke-width .16s,opacity .16s}.edge.active{stroke:#9fd0ff!important;stroke-width:3!important;opacity:1}.stage-band{position:absolute;border-radius:28px;background:linear-gradient(180deg,var(--tint),transparent 88%);border:1px solid var(--line);opacity:.42;pointer-events:none}.stage-band.support{border-radius:70px;background:radial-gradient(ellipse at center,var(--tint),transparent 72%)}.stage-title{position:absolute;transform:translate(-50%,-50%);padding:13px 19px;border-radius:13px;background:var(--strong);border:1px solid var(--line);box-shadow:0 8px 28px rgba(0,0,0,.28);color:#fff;font-weight:700;text-align:center;cursor:pointer;z-index:20;white-space:nowrap}.node{position:absolute;transform:translate(-50%,-50%);padding:9px 13px;min-width:130px;max-width:220px;border-radius:10px;background:var(--strong);border:1px solid var(--line);box-shadow:0 4px 17px rgba(0,0,0,.32);color:#eef6ff;font-size:12px;line-height:1.35;text-align:center;cursor:pointer;z-index:15;transition:transform .12s,opacity .12s,filter .12s,box-shadow .12s}.node:hover,.node:focus{transform:translate(-50%,-50%) scale(1.06);z-index:40;outline:2px solid rgba(255,255,255,.65)}.node.dim{opacity:.12;filter:saturate(.2)}.node.hit{outline:2px solid #fff;box-shadow:0 0 25px rgba(120,180,255,.5)}.node.related{outline:2px solid rgba(159,208,255,.72);box-shadow:0 0 23px rgba(80,155,230,.35)}.node.selected{outline:3px solid #fff;box-shadow:0 0 30px rgba(130,195,255,.62);z-index:42}
+#legend{position:fixed;left:16px;top:16px;z-index:100;width:248px;max-height:calc(100vh - 32px);overflow:auto;padding:13px 15px;border-radius:11px;background:rgba(7,14,29,.94);border:1px solid rgba(103,151,218,.28);font-size:11px;line-height:1.65}.legend-title{font-size:13px;font-weight:700;color:#e7f1ff;margin-bottom:4px}.legend-row{display:flex;align-items:center;gap:7px;color:#91afd2}.swatch{width:9px;height:9px;border-radius:3px;flex:none}.scope{margin-top:7px;padding-top:7px;border-top:1px solid rgba(100,145,205,.16);color:#6f91b9}.scope b{color:#aac6e6}.orientation{margin-top:7px;padding-top:7px;border-top:1px solid rgba(100,145,205,.16);color:#7899bf}.orientation b{color:#b8d0eb}.debate{display:block;margin-top:3px;color:#8eacd0}
+#tools{position:fixed;right:16px;top:16px;z-index:110;width:264px;padding:11px;border-radius:11px;background:rgba(7,14,29,.94);border:1px solid rgba(103,151,218,.28)}#search{width:100%;padding:9px 10px;border-radius:8px;border:1px solid rgba(103,151,218,.3);background:#0d1930;color:#e8f2ff;outline:none}#search:focus{border-color:#65a9fa}.tool-row{display:flex;gap:6px;margin-top:7px}.tool-row button,#nav-mode{flex:1;padding:7px;border-radius:7px;border:1px solid rgba(103,151,218,.25);background:#10203b;color:#91afd2;cursor:pointer}.tool-row button:hover,#nav-mode:hover{color:#fff;border-color:#65a9fa}#nav-mode{width:100%;margin-top:7px}.asof{margin-top:8px;color:#6888ae;font-size:10px}
+#zoom{position:fixed;right:18px;bottom:18px;z-index:120;display:flex;flex-direction:column;gap:6px}#zoom button{width:38px;height:38px;border-radius:9px;border:1px solid rgba(103,151,218,.3);background:rgba(15,35,66,.94);color:#b6d1ef;font-size:17px;cursor:pointer}#hint{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:80;color:#5d7c9f;font-size:10px;pointer-events:none}
+#drawer{position:fixed;right:0;top:0;width:min(620px,96vw);height:100vh;z-index:300;background:rgba(7,13,27,.99);border-left:1px solid rgba(100,155,225,.34);box-shadow:-18px 0 55px rgba(0,0,0,.5);transform:translateX(102%);transition:transform .2s ease;overflow:auto;padding:25px 25px 38px;user-select:text;cursor:default}#drawer.open{transform:translateX(0)}#close{position:absolute;right:15px;top:14px;width:34px;height:34px;border-radius:8px;border:1px solid rgba(105,155,220,.3);background:#11213c;color:#b9d3f1;font-size:19px;cursor:pointer}#stage-label{margin:5px 44px 7px 0;color:#74a9e9;font-size:10px;letter-spacing:.1em}#detail-title{margin:0 45px 18px 0;font-size:23px;line-height:1.3;color:#f2f7ff}.section{margin-bottom:10px;padding:13px 14px;border-radius:10px;background:rgba(17,31,56,.55);border:1px solid rgba(100,145,205,.14);border-left:3px solid #548fd3}.section h3{margin:0 0 7px;color:#7db3f0;font-size:11px;letter-spacing:.08em}.section p,.section li{margin:0;color:#c6d7ea;font-size:13px;line-height:1.72}.section.invest{border-left-color:#dfaa50;background:linear-gradient(135deg,rgba(38,68,105,.48),rgba(62,30,71,.34))}.section.invest h3{color:#f0bd67}.section.diligence{border-left-color:#d96796}.company{padding:9px 0;border-bottom:1px solid rgba(100,145,205,.12)}.company:last-child{border:0}.company-name{font-weight:700;color:#e8f2ff}.company-meta{margin-top:3px;color:#7f9fc4;font-size:11px}.status{display:inline-block;margin-left:5px;padding:1px 5px;border-radius:9px;background:rgba(90,140,200,.18);color:#9cbadd}.cards{display:grid;grid-template-columns:1fr 1fr;gap:7px}.card{padding:9px 10px;border-radius:8px;background:rgba(6,14,28,.46)}.card b{display:block;color:#dfebf9;font-size:12px;margin-bottom:3px}.card span{display:block;color:#9eb4cf;font-size:11px;line-height:1.55}.card .signal{margin-top:4px;color:#75b9ef}.flow{padding:8px 0;border-bottom:1px solid rgba(100,145,205,.12)}.flow:last-child{border:0}.flow b{color:#e7f1ff}.flow small{display:block;margin-top:3px;color:#8ea8c7;font-size:11px;line-height:1.55}.questions{margin:0;padding-left:19px}.source-link{display:block;color:#72b8ff;text-decoration:none;padding:4px 0}.source-link small{color:#6f8dad}.source-link:hover{text-decoration:underline}
+@media(max-width:720px){#legend{display:none}#tools{left:10px;right:10px;top:10px;width:auto}#hint{display:none}#drawer{width:100vw}.cards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main id="viewport" aria-label="交互式产业链地图"><div id="world"><svg id="edges"></svg></div></main>
+<aside id="legend"><div class="legend-title" id="legend-title"></div><div id="legend-items"></div><div class="scope" id="scope"></div><div class="orientation" id="orientation"></div></aside>
+<section id="tools"><input id="search" aria-label="搜索节点或公司" placeholder="搜索节点、公司或技术…"><div class="tool-row"><button id="fit">显示全图</button><button id="clear">清除筛选</button></div><button id="nav-mode">导航：触控板</button><div class="asof" id="asof"></div></section>
+<div id="zoom"><button id="zin" aria-label="放大">+</button><button id="zout" aria-label="缩小">−</button></div>
+<div id="hint">双指滑动平移 · 捏合或⌘+滚轮缩放 · 点击节点查看精读</div>
+<aside id="drawer" aria-hidden="true"><button id="close" aria-label="关闭">×</button><div id="stage-label"></div><h2 id="detail-title"></h2><div id="detail"></div></aside>
+<script>
+const DATA=__MAP_DATA__;
+const palette=[
+ {strong:'#17466f',line:'rgba(94,165,230,.5)',tint:'rgba(45,115,190,.23)'},
+ {strong:'#7d2c14',line:'rgba(244,119,64,.5)',tint:'rgba(190,65,25,.22)'},
+ {strong:'#185a2c',line:'rgba(76,190,110,.5)',tint:'rgba(30,145,70,.22)'},
+ {strong:'#542080',line:'rgba(165,90,235,.5)',tint:'rgba(120,45,190,.22)'},
+ {strong:'#00657b',line:'rgba(40,190,215,.5)',tint:'rgba(0,145,175,.22)'},
+ {strong:'#6b4908',line:'rgba(229,179,70,.5)',tint:'rgba(170,115,15,.22)'}
+];
+const world=document.getElementById('world'),svg=document.getElementById('edges'),viewport=document.getElementById('viewport');
+const stages=[...DATA.stages].sort((a,b)=>(a.order??999)-(b.order??999));
+const chainStages=stages.filter(s=>s.kind!=='support'),supportStages=stages.filter(s=>s.kind==='support');
+const nodesByStage=new Map(stages.map(s=>[s.id,DATA.nodes.filter(n=>n.stage_id===s.id)]));
+const sourceMap=new Map(DATA.sources.map(s=>[s.id,s]));
+const nodeMap=new Map();
+const edgeRecords=[];
+const stageMap=new Map(stages.map(s=>[s.id,s]));
+const stageWidth=520,topY=320,rowGap=125,baseX=250,supportY=0;
+const maxRows=Math.max(1,...chainStages.map(s=>nodesByStage.get(s.id).length));
+const chainBottom=topY+170+maxRows*rowGap;
+const supportBase=chainBottom+220;
+const worldW=Math.max(1200,baseX*2+(chainStages.length-1)*stageWidth);
+let worldH=supportStages.length?supportBase+supportStages.length*260+190:chainBottom+180;
+svg.setAttribute('width',worldW+400);svg.setAttribute('height',worldH+200);
+svg.innerHTML='<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(132,174,220,.72)"></path></marker><marker id="arrow-support" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="rgba(177,126,225,.7)"></path></marker></defs>';
+
+function css(el,color){el.style.setProperty('--strong',color.strong);el.style.setProperty('--line',color.line);el.style.setProperty('--tint',color.tint)}
+function place(){
+ chainStages.forEach((stage,i)=>{
+  const color=palette[i%palette.length],x=baseX+i*stageWidth,items=nodesByStage.get(stage.id);
+  const band=document.createElement('div');band.className='stage-band';band.style.cssText=`left:${x-205}px;top:${topY-60}px;width:410px;height:${Math.max(520,items.length*rowGap+165)}px`;css(band,color);world.appendChild(band);
+  const title=document.createElement('button');title.className='stage-title';title.textContent=stage.title;title.style.left=x+'px';title.style.top=topY+'px';title.dataset.stageId=stage.id;css(title,color);world.appendChild(title);
+  items.forEach((node,j)=>makeNode(node,x+(j%2?72:-72),topY+170+j*rowGap,color));
+ });
+ supportStages.forEach((stage,k)=>{
+  const color=palette[(chainStages.length+k)%palette.length],y=supportBase+k*260,items=nodesByStage.get(stage.id);
+  const band=document.createElement('div');band.className='stage-band support';band.style.cssText=`left:180px;top:${y-85}px;width:${worldW-360}px;height:230px`;css(band,color);world.appendChild(band);
+  const title=document.createElement('button');title.className='stage-title';title.textContent=stage.title+' · 横向支撑层';title.style.left=(worldW/2)+'px';title.style.top=y+'px';title.dataset.stageId=stage.id;css(title,color);world.appendChild(title);
+  const gap=(worldW-420)/Math.max(1,items.length);items.forEach((node,j)=>makeNode(node,210+gap*(j+.5),y+120,color));
+ });
+}
+function makeNode(node,x,y,color){
+ const el=document.createElement('button');el.className='node';el.textContent=node.title;el.style.left=x+'px';el.style.top=y+'px';el.dataset.id=node.id;css(el,color);world.appendChild(el);nodeMap.set(node.id,{data:node,el,x,y});
+}
+function drawEdges(){
+ DATA.edges.forEach(edge=>{
+  const a=nodeMap.get(edge.from),b=nodeMap.get(edge.to);if(!a||!b)return;
+  const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+  const dx=b.x-a.x,dy=b.y-a.y,len=Math.max(1,Math.hypot(dx,dy)),pad=78,sx=a.x+dx/len*pad,sy=a.y+dy/len*pad,ex=b.x-dx/len*pad,ey=b.y-dy/len*pad,mx=(sx+ex)/2;path.setAttribute('d',`M${sx},${sy} C${mx},${sy} ${mx},${ey} ${ex},${ey}`);path.setAttribute('fill','none');path.setAttribute('stroke',edge.type==='support'?'rgba(163,105,225,.33)':'rgba(115,150,195,.4)');path.setAttribute('stroke-width',edge.type==='support'?'1.3':'1.6');path.setAttribute('marker-end',edge.type==='support'?'url(#arrow-support)':'url(#arrow)');path.setAttribute('class','edge');svg.appendChild(path);edgeRecords.push({data:edge,path});
+ });
+}
+place();drawEdges();
+
+document.getElementById('legend-title').textContent=DATA.title;
+document.getElementById('legend-items').innerHTML=stages.map((s,i)=>`<div class="legend-row"><span class="swatch" style="background:${palette[i%palette.length].strong}"></span>${escapeHtml(s.title)}${s.kind==='support'?'（支撑层）':''}</div>`).join('');
+document.getElementById('scope').innerHTML=`<b>范围</b>：${escapeHtml(DATA.scope.product)}<br><b>地区</b>：${escapeHtml(DATA.scope.geography)}<br><b>周期</b>：${escapeHtml(DATA.scope.time_horizon)}<br><b>公司</b>：${escapeHtml(DATA.scope.company_universe)}<br><b>排除</b>：${escapeHtml((DATA.scope.excluded||[]).join('、'))}`;
+const orientation=DATA.orientation||{};
+document.getElementById('orientation').innerHTML=`<b>赛道判断（非链条）</b><br><b>目的</b>：${escapeHtml(orientation.purpose||'')}<br><b>阶段</b>：${escapeHtml(orientation.lifecycle_stage||'')}<br><b>依据</b>：${escapeHtml(orientation.lifecycle_basis||'')}<br><b>需求</b>：${escapeHtml(orientation.demand_state||'')}<br><b>市场口径</b>：${escapeHtml(orientation.market_definition||'')}<span class="debate"><b>关键争议</b>：${escapeHtml((orientation.key_debates||[]).join('；'))}</span>`;
+document.getElementById('asof').textContent='研究基准日：'+DATA.as_of_date;
+
+function escapeHtml(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function list(v){return (v||[]).map(x=>`<li>${escapeHtml(typeof x==='string'?x:(x.name||''))}</li>`).join('')}
+const statusLabels={verified_supplier:'已验证供应商',verified_customer:'已验证客户',verified_participant:'已验证参与者',reported_poc:'公开PoC/合作',representative_target:'代表性目标客户',inference:'分析推断'};
+function renderRoutes(routes){return `<div class="cards">${(routes||[]).map(r=>`<div class="card"><b>${escapeHtml(r.name)} · ${escapeHtml(r.maturity)}</b><span>${escapeHtml(r.trade_off)}</span><span class="signal">采用信号：${escapeHtml(r.adoption_signal)}</span></div>`).join('')}</div>`}
+function renderMetrics(metrics){return `<div class="cards">${(metrics||[]).map(m=>`<div class="card"><b>${escapeHtml(m.name)}</b><span>${escapeHtml(m.why_it_matters)}</span><span class="signal">观察：${escapeHtml(m.signal)}</span></div>`).join('')}</div>`}
+function renderFlows(id){return edgeRecords.filter(x=>x.data.from===id||x.data.to===id).map(({data:e})=>{const incoming=e.to===id,other=nodeMap.get(incoming?e.from:e.to)?.data?.title||'';return `<div class="flow"><b>${incoming?'← 来自':'→ 流向'} ${escapeHtml(other)}｜${escapeHtml(e.label)}</b><small>${escapeHtml(e.mechanism)}</small></div>`}).join('')}
+function setConnectionHighlight(id){const related=new Set([id]);edgeRecords.forEach(({data,path})=>{const active=data.from===id||data.to===id;path.classList.toggle('active',active);if(active){related.add(data.from);related.add(data.to)}});nodeMap.forEach(({el},nodeId)=>{el.classList.toggle('selected',nodeId===id);el.classList.toggle('related',nodeId!==id&&related.has(nodeId))})}
+function openNode(id){
+ const node=nodeMap.get(id)?.data;if(!node)return;const stage=stageMap.get(node.stage_id),view=node.investment_view||{};
+ const companies=(node.companies||[]).map(c=>`<div class="company"><div class="company-name">${escapeHtml(c.name)}<span class="status">${escapeHtml(statusLabels[c.evidence_status]||c.evidence_status)}</span></div><div class="company-meta">${escapeHtml(c.role)}${c.geography?' · '+escapeHtml(c.geography):''}</div></div>`).join('');
+ const economics=node.economics||{};
+ const sources=(node.source_ids||[]).map(id=>sourceMap.get(id)).filter(Boolean).map(s=>`<a class="source-link" target="_blank" rel="noopener" href="${escapeHtml(s.url)}">${escapeHtml(s.publisher)}｜${escapeHtml(s.title)} ↗<small>${escapeHtml(s.published_date||'无发布日期')} · 访问 ${escapeHtml(s.accessed_date)}</small></a>`).join('');
+ document.getElementById('stage-label').textContent=stage.title+(stage.kind==='support'?' · 横向支撑层':' · 产业链节点');document.getElementById('detail-title').textContent=node.title;
+ document.getElementById('detail').innerHTML=`
+  <section class="section"><h3>01 · 它是什么</h3><p>${escapeHtml(node.summary)}</p></section>
+  <section class="section"><h3>02 · 链条位置</h3><p><b>输入：</b>${escapeHtml(node.chain_role.inputs.join('、'))}<br><b>转化：</b>${escapeHtml(node.chain_role.transformation)}<br><b>输出：</b>${escapeHtml(node.chain_role.outputs.join('、'))}<br><b>直接客户：</b>${escapeHtml(node.chain_role.customers.join('、'))}<br><b>付费方：</b>${escapeHtml(node.chain_role.payer)}</p></section>
+  <section class="section"><h3>03 · 上下游如何传导</h3>${renderFlows(id)||'<p>暂无已验证连接</p>'}</section>
+  <section class="section"><h3>04 · 主要公司与角色</h3>${companies}</section>
+  <section class="section"><h3>05 · 技术路线</h3>${renderRoutes(node.technology_routes)}</section>
+  <section class="section"><h3>06 · 节点经济性与议价权</h3><p><b>变现：</b>${escapeHtml(economics.revenue_model)}<br><b>主要成本：</b>${escapeHtml((economics.cost_drivers||[]).join('、'))}<br><b>议价权：</b>${escapeHtml(economics.bargaining_power)}<br><b>利润池：</b>${escapeHtml(economics.profit_pool_logic)}<br><b>价格/产能传导：</b>${escapeHtml(economics.price_or_capacity_transmission)}</p></section>
+  <section class="section"><h3>07 · 竞争关键</h3><p>${escapeHtml(node.competition.join('、'))}</p></section>
+  <section class="section"><h3>08 · 关键指标</h3>${renderMetrics(node.metrics)}</section>
+  <section class="section invest"><h3>09 · 投资观点（分析判断）</h3><p><b>逻辑：</b>${escapeHtml(view.thesis)}<br><b>壁垒：</b>${escapeHtml(view.moat)}<br><b>催化：</b>${escapeHtml(view.catalyst)}<br><b>风险：</b>${escapeHtml(view.risk)}<br><b>更新信号：</b>${escapeHtml(view.watch)}</p></section>
+  <section class="section diligence"><h3>10 · 尽调问题</h3><ol class="questions">${list(node.diligence_questions)}</ol></section>
+  <section class="section"><h3>11 · 节点级来源</h3>${sources||'<p>暂无可用来源</p>'}</section>`;
+ setConnectionHighlight(id);
+ const drawer=document.getElementById('drawer');drawer.classList.add('open');drawer.setAttribute('aria-hidden','false');
+}
+function closeDrawer(){const d=document.getElementById('drawer');d.classList.remove('open');d.setAttribute('aria-hidden','true');edgeRecords.forEach(({path})=>path.classList.remove('active'));nodeMap.forEach(({el})=>el.classList.remove('selected','related'))}
+document.getElementById('close').addEventListener('click',closeDrawer);window.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
+
+document.getElementById('search').addEventListener('input',e=>{
+ const q=e.target.value.trim().toLowerCase();nodeMap.forEach(({data,el})=>{const eco=data.economics||{};const hay=[data.title,data.summary,...(data.companies||[]).flatMap(c=>[c.name,c.role]),...(data.competition||[]),...(data.technology_routes||[]).flatMap(r=>[r.name,r.maturity,r.trade_off,r.adoption_signal]),...(data.metrics||[]).flatMap(m=>[m.name,m.why_it_matters,m.signal]),...Object.values(eco).flat()].join(' ').toLowerCase();el.classList.toggle('dim',!!q&&!hay.includes(q));el.classList.toggle('hit',!!q&&hay.includes(q))});
+});
+document.getElementById('clear').addEventListener('click',()=>{document.getElementById('search').value='';nodeMap.forEach(({el})=>el.classList.remove('dim','hit'))});
+
+let tx=0,ty=0,scale=.35,frame=0,moved=false,drag=false,lastX=0,lastY=0,pointer=null,nav='trackpad',downNode=null,downStage=null;
+function paint(){frame=0;world.style.transform=`translate3d(${tx}px,${ty}px,0) scale(${scale})`}
+function apply(){if(!frame)frame=requestAnimationFrame(paint)}
+function fit(){const pad=40,top=40;scale=Math.max(.16,Math.min(1.1,(innerWidth-pad*2)/worldW,(innerHeight-top*2)/worldH));tx=(innerWidth-worldW*scale)/2;ty=(innerHeight-worldH*scale)/2;apply()}
+function zoomAt(x,y,next){next=Math.max(.15,Math.min(2.5,next));const wx=(x-tx)/scale,wy=(y-ty)/scale;scale=next;tx=x-wx*scale;ty=y-wy*scale;apply()}
+function focusStage(id){const items=[...nodeMap.values()].filter(x=>x.data.stage_id===id);if(!items.length)return;const cx=items.reduce((a,b)=>a+b.x,0)/items.length,cy=items.reduce((a,b)=>a+b.y,0)/items.length;scale=.72;tx=innerWidth/2-cx*scale;ty=innerHeight/2-cy*scale;apply()}
+fit();addEventListener('resize',fit);
+viewport.addEventListener('pointerdown',e=>{if(e.button!==0&&e.button!==2)return;drag=true;moved=false;pointer=e.pointerId;lastX=e.clientX;lastY=e.clientY;downNode=e.button===0?e.target.closest?.('.node')?.dataset.id:null;downStage=e.button===0?e.target.closest?.('.stage-title')?.dataset.stageId:null;viewport.setPointerCapture(e.pointerId);document.body.classList.add('dragging')});
+viewport.addEventListener('pointermove',e=>{if(!drag||e.pointerId!==pointer)return;const dx=e.clientX-lastX,dy=e.clientY-lastY;if(Math.abs(dx)+Math.abs(dy)>3)moved=true;tx+=dx;ty+=dy;lastX=e.clientX;lastY=e.clientY;apply()});
+function end(e){if(e.pointerId!==pointer)return;const node=!moved?downNode:null,stage=!moved?downStage:null;drag=false;pointer=null;downNode=null;downStage=null;document.body.classList.remove('dragging');if(node)openNode(node);else if(stage)focusStage(stage)}viewport.addEventListener('pointerup',end);viewport.addEventListener('pointercancel',end);viewport.addEventListener('contextmenu',e=>e.preventDefault());
+viewport.addEventListener('wheel',e=>{e.preventDefault();if(nav==='mouse'&&!e.shiftKey||e.ctrlKey||e.metaKey){zoomAt(e.clientX,e.clientY,scale*Math.exp(-e.deltaY*(e.deltaMode===1 ? .045 : .0025)))}else{tx-=e.shiftKey?e.deltaY:e.deltaX;ty-=e.shiftKey?e.deltaX:e.deltaY;apply()}},{passive:false});
+document.getElementById('fit').addEventListener('click',fit);document.getElementById('zin').addEventListener('click',()=>zoomAt(innerWidth/2,innerHeight/2,scale*1.25));document.getElementById('zout').addEventListener('click',()=>zoomAt(innerWidth/2,innerHeight/2,scale*.8));document.getElementById('nav-mode').addEventListener('click',e=>{nav=nav==='trackpad'?'mouse':'trackpad';e.currentTarget.textContent='导航：'+(nav==='trackpad'?'触控板':'鼠标')});
+</script>
+</body>
+</html>
