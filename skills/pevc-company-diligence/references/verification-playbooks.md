@@ -2,13 +2,13 @@
 
 Use only the playbooks relevant to the claims that could change the decision. These are tests, not substitute report sections.
 
-## 1. BP and CIM fact extraction
+## 1. Fact-card handoff and intake reconciliation
 
-1. Register the material, version/date, pages reviewed, and unreadable portions.
-2. Write the one-sentence mechanism: the company provides **what**, to **whom**, solves **which problem**, and is paid **how**. Mark missing components as undisclosed.
-3. Normalize every material metric into `value / period / unit / definition / actual or forecast / source`.
-4. List internal conflicts separately from missing data and from claims requiring external verification.
-5. Build the decisive-claims ledger before applying fund criteria or writing an investment view.
+1. Import the project fact card and source register when available; confirm versions, cutoff, pages reviewed, and unreadable portions.
+2. Reconcile the one-sentence mechanism: the company provides **what**, to **whom**, solves **which problem**, and is paid **how**. Mark missing components as undisclosed.
+3. Normalize every material metric into `value / period / unit / definition / actual or forecast / source` and preserve earlier definitions.
+4. Carry forward internal conflicts, missing data, and claims requiring external verification rather than silently resolving them.
+5. Select the decisive claims to test and record what outcome would change the screening or IC view.
 
 ## 2. Customer and order verification
 

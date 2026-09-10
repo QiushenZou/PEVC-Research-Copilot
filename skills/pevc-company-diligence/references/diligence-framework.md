@@ -10,7 +10,7 @@ Record the decision being made, deadline, deal stage, security, control rights, 
 - **Underwriting questions:** claims that determine growth, margin, cash need, downside, and return.
 - **Execution gates:** information, approvals, customer references, legal/tax work, or milestones required before signing or closing.
 
-For a BP fact card, stop after describing facts and gaps. For a rapid screen, compare actuals with user-supplied criteria in a `criterion / target / actual / status / evidence` table. Use `Pass`, `Fail`, `Unclear`, or `Not applicable`; an unknown is not automatically a fail.
+The initial fund gate belongs in `pevc-deal-screening`. Company diligence should inherit that gate and test the claims capable of changing it. If no screening decision exists, record the intended decision and explicit diligence questions rather than inventing fund criteria.
 
 ## 1. Business model and value proposition
 

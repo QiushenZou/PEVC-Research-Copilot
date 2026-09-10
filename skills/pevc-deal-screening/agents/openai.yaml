@@ -1,0 +1,6 @@
+interface:
+  display_name: "PE/VC 项目初筛"
+  short_description: "用真实基金标准判断项目该继续、暂缓还是放弃，并设计最低成本验证"
+  default_prompt: "Use $pevc-deal-screening to screen this opportunity against the fund's explicit criteria and recommend the next gate with falsifiable tests."
+policy:
+  allow_implicit_invocation: true

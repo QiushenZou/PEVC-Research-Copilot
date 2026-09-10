@@ -1,6 +1,6 @@
 ---
 name: pevc-company-diligence
-description: Conduct evidence-backed PE/VC company diligence from BP fact extraction through commercial, customer, product, financial-quality, and red-flag work. Use for target-company screens, full diligence, data-room tracking, diligence refreshes, and claim verification; do not use for industry-wide mapping or as a substitute for legal, tax, or audit opinions.
+description: Verify decision-driving PE/VC company claims across customers, product, technology, competition, financial quality, organization, and transaction risks. Use for focused verification, full diligence, data-room tracking, diligence refreshes, and red-flag audits after a basic company fact base exists; use pevc-bp-fact-card for neutral material extraction and pevc-deal-screening for the initial fund gate.
 ---
 
 # PE/VC Company Diligence
@@ -9,8 +9,6 @@ Turn fragmented company materials into a decision-useful view of how the company
 
 ## Choose the mode
 
-- **BP fact card:** extract what the materials actually disclose before applying fund preferences or making an investment recommendation.
-- **Rapid screen:** compare verified deal facts with explicit fund criteria, decide whether the opportunity deserves more work, and identify the highest-value unanswered questions.
 - **Full diligence:** build a complete company view from management materials, data-room evidence, interviews, public sources, and financial data.
 - **Verification sprint:** test one or more decisive claims such as customers, orders, retention, margin, technical maturity, or regulatory status.
 - **Refresh:** update an earlier assessment while preserving prior conclusions and explicitly recording what changed.
@@ -18,9 +16,9 @@ Turn fragmented company materials into a decision-useful view of how the company
 
 ## Required workflow
 
-1. Define the company, transaction stage, security or deal type, geography, information cutoff date, decision deadline, and intended decision. State material scope exclusions. For a rapid screen, obtain the fund's actual gates; do not invent a scoring model.
+1. Define the company, transaction stage, security or deal type, geography, information cutoff date, decision deadline, and intended decision. State material scope exclusions and the claims this diligence must resolve.
 2. Register every input with version/date, pages or sections read, unreadable or missing portions, and source type. Do not imply complete review when coverage is partial.
-3. First create a neutral fact base. Distinguish `Verified fact`, `Management claim`, `Third-party estimate`, `Calculation`, `Inference`, `Investment view`, `Open question`, and `Conflict`. BP-only work must not silently become external verification.
+3. Reuse a `pevc-bp-fact-card` handoff when available; otherwise create the minimum neutral fact base needed for the selected tests. Distinguish `Verified fact`, `Management claim`, `Third-party estimate`, `Calculation`, `Inference`, `Investment view`, `Open question`, and `Conflict`.
 4. Create a decisive-claims ledger using [references/evidence-and-red-flags.md](references/evidence-and-red-flags.md). Never turn a target account, pilot, design win, framework agreement, channel shipment, or management target into recognized revenue, cash collection, or repeat demand.
 5. Analyze the company using [references/diligence-framework.md](references/diligence-framework.md). Follow both the operating chain and the accounting chain: customer need → purchase → contract/order → delivery/acceptance → revenue → gross profit → cash → reinvestment.
 6. Select only the verification playbooks that fit the business and claims under review. Read [references/verification-playbooks.md](references/verification-playbooks.md) for customer sampling, interviews, public-order checks, recurring-revenue tests, and financial bridges.
@@ -47,6 +45,8 @@ Turn fragmented company materials into a decision-useful view of how the company
 ## Output
 
 Default to a concise Markdown report, claims ledger, and diligence tracker. Use a spreadsheet or model when detailed reconciliation, sampling, status tracking, or scenarios would be clearer. Preserve source links, document names, page references, dates, calculation formulas, interview vantage points, and search coverage.
+
+For a suite workflow, update the existing `evidence-bundle.json` rather than creating a second incompatible fact base. Preserve prior facts and append dated changes, new evidence, counterevidence, and resolved or escalated open items. Route a formal committee decision to `pevc-ic-memo`.
 
 ## References
 

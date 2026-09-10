@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/pevc/project-manifest.schema.json",
+  "title": "PEVC project manifest",
+  "type": "object",
+  "required": ["schema_version", "project_id", "as_of_date", "workflow_stage", "investment_type", "scope", "decision"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "project_id": {"type": "string", "minLength": 1},
+    "display_name": {"type": ["string", "null"]},
+    "as_of_date": {"type": "string", "format": "date"},
+    "workflow_stage": {
+      "enum": ["intake", "screening", "industry-research", "diligence", "preliminary-ic", "final-ic", "update"]
+    },
+    "investment_type": {"enum": ["pe-control", "growth-minority", "vc", "undetermined"]},
+    "scope": {
+      "type": "object",
+      "required": ["geography", "time_horizon", "included", "excluded"],
+      "properties": {
+        "company": {"type": ["string", "null"]},
+        "industry": {"type": ["string", "null"]},
+        "product": {"type": ["string", "null"]},
+        "geography": {"type": "string"},
+        "time_horizon": {"type": "string"},
+        "included": {"type": "array", "items": {"type": "string"}},
+        "excluded": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "decision": {
+      "type": "object",
+      "required": ["current_gate", "requested_authority", "deadline"],
+      "properties": {
+        "current_gate": {"type": "string"},
+        "requested_authority": {"type": "string"},
+        "deadline": {"type": ["string", "null"], "format": "date"},
+        "permitted_vocabulary": {"type": "array", "items": {"type": "string"}}
+      },
+      "additionalProperties": true
+    },
+    "fund_criteria": {"type": "array", "items": {"type": "object"}},
+    "materials": {"type": "array", "items": {"type": "object"}},
+    "confidentiality": {
+      "type": "object",
+      "properties": {
+        "classification": {"enum": ["public", "internal", "confidential", "highly-confidential"]},
+        "external_sharing_allowed": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

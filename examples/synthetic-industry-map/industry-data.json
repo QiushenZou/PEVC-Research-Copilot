@@ -1,0 +1,135 @@
+{
+  "title": "合成算力设备产业链示例（仅用于功能测试）",
+  "as_of_date": "2026-09-10",
+  "scope": {
+    "product": "虚构算力加速设备",
+    "geography": "虚构全球市场",
+    "time_horizon": "当前结构",
+    "company_universe": "全部为虚构公司",
+    "included": ["关键部件", "设备集成", "数据中心部署"],
+    "excluded": ["真实公司判断", "市场规模与估值"]
+  },
+  "orientation": {
+    "purpose": "验证产业链地图的数据结构、渲染和交互，不代表真实行业研究。",
+    "lifecycle_stage": "示意",
+    "lifecycle_basis": "本例全部事实、公司与数字均为虚构。",
+    "demand_state": "示意性需求由数据中心扩容驱动。",
+    "market_definition": "只覆盖三个虚构交易环节。",
+    "key_debates": ["部件稀缺性是否能够形成持续议价权", "集成环节能否通过软件与服务提高价值捕获"],
+    "source_ids": ["synthetic-spec"]
+  },
+  "stages": [
+    {"id": "components", "title": "关键部件供给", "kind": "chain", "order": 1, "description": "向设备集成商交付可装配的核心部件。"},
+    {"id": "systems", "title": "设备集成", "kind": "chain", "order": 2, "description": "把部件、软件和工程能力集成为可部署设备。"},
+    {"id": "deployment", "title": "数据中心部署", "kind": "chain", "order": 3, "description": "采购、安装并运营设备，为工作负载提供算力服务。"}
+  ],
+  "nodes": [
+    {
+      "id": "accelerator-components",
+      "stage_id": "components",
+      "title": "加速部件",
+      "summary": "该节点向设备集成商提供决定计算性能的核心部件。输入包括设计、材料和制造服务。转化过程把这些投入变成可装配模块。输出是通过基本测试的加速部件。直接客户是设备集成商，付款方通常也是集成商。性能、功耗、良率和交期共同决定部件的实际价值。由于本例为虚构数据，所有公司名称仅用于测试弹窗和公司列表显示。",
+      "chain_role": {
+        "inputs": ["设计", "材料", "制造服务"],
+        "transformation": "把设计和制造投入转化为可装配的加速部件。",
+        "outputs": ["加速部件"],
+        "customers": ["设备集成商"],
+        "payer": "设备集成商"
+      },
+      "companies": [
+        {"name": "Alpha Components", "role": "虚构部件供应商", "geography": "示意", "evidence_status": "representative_target", "source_ids": ["synthetic-spec"]},
+        {"name": "Beta Silicon", "role": "虚构部件供应商", "geography": "示意", "evidence_status": "representative_target", "source_ids": ["synthetic-spec"]},
+        {"name": "Gamma Modules", "role": "虚构模块供应商", "geography": "示意", "evidence_status": "representative_target", "source_ids": ["synthetic-spec"]}
+      ],
+      "technology_routes": [
+        {"name": "单体高性能路线", "maturity": "示意", "trade_off": "性能集中但成本与供给风险较高。", "adoption_signal": "虚构客户持续重复采购。", "source_ids": ["synthetic-spec"]},
+        {"name": "模块化路线", "maturity": "示意", "trade_off": "扩展灵活但互连和软件复杂度更高。", "adoption_signal": "虚构标准接口进入量产。", "source_ids": ["synthetic-spec"]}
+      ],
+      "economics": {
+        "revenue_model": "按部件数量和规格收费。",
+        "cost_drivers": ["制造", "材料", "良率", "研发"],
+        "bargaining_power": "当高性能供给稀缺时，部件商可能拥有较强议价权。",
+        "profit_pool_logic": "性能稀缺、规模和良率可以支持价值捕获，但替代路线会限制持续性。",
+        "price_or_capacity_transmission": "部件价格和交期通过设备成本与可交付数量传导到集成和部署环节。"
+      },
+      "competition": ["性能", "功耗", "良率", "供给稳定性"],
+      "metrics": [
+        {"name": "有效性能", "why_it_matters": "决定客户可处理的工作负载。", "signal": "单位成本下性能提升强化产品价值。", "source_ids": ["synthetic-spec"]},
+        {"name": "量产良率", "why_it_matters": "影响单位成本和交付能力。", "signal": "良率稳定提高通常改善毛利和交期。", "source_ids": ["synthetic-spec"]},
+        {"name": "交付周期", "why_it_matters": "决定下游能否按计划扩容。", "signal": "交期拉长可能强化短期议价但压制需求兑现。", "source_ids": ["synthetic-spec"]}
+      ],
+      "investment_view": {"thesis": "稀缺高性能部件可能形成利润池。", "moat": "设计、良率和客户验证。", "catalyst": "重复量产订单增加。", "risk": "替代路线和供给扩张削弱稀缺性。", "watch": "价格与交期是否在供给增加后仍保持。"},
+      "diligence_questions": ["订单处于测试、量产还是重复采购？", "良率变化如何影响单位成本？", "客户转换到替代部件需要多长时间？"],
+      "source_ids": ["synthetic-spec"]
+    },
+    {
+      "id": "system-integration",
+      "stage_id": "systems",
+      "title": "设备与软件集成",
+      "summary": "该节点把部件装配成可以交付的数据中心设备。输入包括加速部件、网络、存储和系统软件。集成商完成硬件设计、软件适配、测试和售后准备。输出是可安装的整机及配套软件。直接客户和付款方通常是数据中心运营者。节点价值取决于系统稳定性、交付效率和软件兼容性。由于本例仅用于功能测试，公司和投资观点均不对应真实市场。",
+      "chain_role": {"inputs": ["加速部件", "网络与存储", "系统软件"], "transformation": "完成硬件装配、软件适配、测试和交付准备。", "outputs": ["计算设备", "配套软件与服务"], "customers": ["数据中心运营者"], "payer": "数据中心运营者"},
+      "companies": [
+        {"name": "Delta Systems", "role": "虚构设备集成商", "geography": "示意", "evidence_status": "representative_target", "source_ids": ["synthetic-spec"]},
+        {"name": "Epsilon Compute", "role": "虚构设备集成商", "geography": "示意", "evidence_status": "representative_target", "source_ids": ["synthetic-spec"]},
+        {"name": "Zeta Platforms", "role": "虚构系统平台商", "geography": "示意", "evidence_status": "representative_target", "source_ids": ["synthetic-spec"]}
+      ],
+      "technology_routes": [
+        {"name": "标准化整机", "maturity": "示意", "trade_off": "交付快但差异化有限。", "adoption_signal": "标准配置占虚构出货比例提高。", "source_ids": ["synthetic-spec"]},
+        {"name": "定制化集群", "maturity": "示意", "trade_off": "客户适配度高但工程交付和服务成本较重。", "adoption_signal": "定制项目能够标准化复制。", "source_ids": ["synthetic-spec"]}
+      ],
+      "economics": {"revenue_model": "按设备、软件许可和服务收费。", "cost_drivers": ["核心部件", "工程交付", "库存", "售后"], "bargaining_power": "对上游部件商和大型下游客户通常双向承压，差异化软件可改善议价。", "profit_pool_logic": "纯硬件集成容易竞争激烈，稳定软件和服务收入可能提高价值捕获。", "price_or_capacity_transmission": "上游涨价先压缩整机毛利，随后视合同和竞争情况向客户价格传导。"},
+      "competition": ["系统稳定性", "软件兼容", "交付周期", "服务能力"],
+      "metrics": [
+        {"name": "整机毛利率", "why_it_matters": "显示集成商能否避免纯硬件低附加值。", "signal": "在部件价格波动中保持毛利说明存在差异化或传导能力。", "source_ids": ["synthetic-spec"]},
+        {"name": "按期交付率", "why_it_matters": "反映供应链和工程执行。", "signal": "稳定提升通常强化客户信任与现金回收。", "source_ids": ["synthetic-spec"]},
+        {"name": "软件与服务收入占比", "why_it_matters": "可能反映更持续的价值捕获。", "signal": "伴随续约和正现金贡献的占比上升更有意义。", "source_ids": ["synthetic-spec"]}
+      ],
+      "investment_view": {"thesis": "能够把软件与服务标准化的集成商可能改善利润质量。", "moat": "系统工程、兼容生态和客户服务。", "catalyst": "定制项目转化为标准产品。", "risk": "部件成本和大客户压价挤压毛利。", "watch": "服务收入是否真正续约并产生现金。"},
+      "diligence_questions": ["硬件、软件和服务的毛利分别是多少？", "定制项目有多少可以复用？", "上游涨价能否按合同传导？"],
+      "source_ids": ["synthetic-spec"]
+    },
+    {
+      "id": "datacenter-deployment",
+      "stage_id": "deployment",
+      "title": "数据中心部署与运营",
+      "summary": "该节点采购并运营设备，为最终客户提供算力能力。输入是计算设备、机房、电力、网络和运维人员。运营者完成安装、调度、计费和维护。输出是可被工作负载消费的算力服务。直接客户可能是企业或应用开发者，付款方根据合同可能是企业 IT 部门。利用率、电力成本和服务价格共同决定经济性。所有名称和判断仍为虚构测试信息。",
+      "chain_role": {"inputs": ["计算设备", "机房", "电力与网络", "运维"], "transformation": "安装、调度、维护并向客户交付可计费算力。", "outputs": ["算力服务"], "customers": ["企业与应用开发者"], "payer": "企业客户或平台客户"},
+      "companies": [
+        {"name": "Eta Cloud", "role": "虚构数据中心运营者", "geography": "示意", "evidence_status": "representative_target", "source_ids": ["synthetic-spec"]},
+        {"name": "Theta Data", "role": "虚构数据中心运营者", "geography": "示意", "evidence_status": "representative_target", "source_ids": ["synthetic-spec"]},
+        {"name": "Iota Infrastructure", "role": "虚构算力服务商", "geography": "示意", "evidence_status": "representative_target", "source_ids": ["synthetic-spec"]}
+      ],
+      "technology_routes": [
+        {"name": "自建运营", "maturity": "示意", "trade_off": "控制力强但资本投入和利用率风险较高。", "adoption_signal": "长期合同覆盖新增投入。", "source_ids": ["synthetic-spec"]},
+        {"name": "托管与弹性采购", "maturity": "示意", "trade_off": "资本更轻但供应控制和单位成本可能较弱。", "adoption_signal": "需求波动下仍能维持服务水平。", "source_ids": ["synthetic-spec"]}
+      ],
+      "economics": {"revenue_model": "按使用量、预留容量或长期合同收费。", "cost_drivers": ["设备折旧", "电力", "机房", "网络", "运维"], "bargaining_power": "大型客户和稀缺区域资源会分别影响价格谈判。", "profit_pool_logic": "高利用率、低电力成本和稳定长期合同可以形成价值，但重资产与价格竞争限制回报。", "price_or_capacity_transmission": "终端需求先影响利用率和扩容订单，再反向传导至设备和部件采购。"},
+      "competition": ["利用率", "能源效率", "服务可靠性", "客户获取"],
+      "metrics": [
+        {"name": "有效利用率", "why_it_matters": "决定固定资产能否产生足够收入。", "signal": "在不过度降价下提高利用率通常改善现金回报。", "source_ids": ["synthetic-spec"]},
+        {"name": "单位算力电力成本", "why_it_matters": "是持续运营的主要可变成本之一。", "signal": "单位成本下降且价格稳定改善贡献利润。", "source_ids": ["synthetic-spec"]},
+        {"name": "合同覆盖率", "why_it_matters": "影响新增资本开支的需求可见度。", "signal": "高质量长期合同覆盖提高通常降低空置风险。", "source_ids": ["synthetic-spec"]}
+      ],
+      "investment_view": {"thesis": "具备低成本资源和高利用率的运营者可能形成稳定现金流。", "moat": "资源、客户合同和运营效率。", "catalyst": "高质量需求推动利用率提升。", "risk": "扩容过快、价格下行和能源约束。", "watch": "新增资本开支是否有可验证合同覆盖。"},
+      "diligence_questions": ["利用率是否包含不可计费测试负载？", "长期合同是否允许客户无罚金退出？", "新增设备的回收期对价格和电力成本有多敏感？"],
+      "source_ids": ["synthetic-spec"]
+    }
+  ],
+  "edges": [
+    {"from": "accelerator-components", "to": "system-integration", "type": "supply", "label": "部件交付", "mechanism": "部件性能、价格和交期决定集成商可交付设备的成本、规格与数量。", "source_ids": ["synthetic-spec"]},
+    {"from": "system-integration", "to": "datacenter-deployment", "type": "product", "label": "设备与软件交付", "mechanism": "设备价格、可靠性和部署周期影响运营者资本开支、上线时间与服务成本。", "source_ids": ["synthetic-spec"]},
+    {"from": "datacenter-deployment", "to": "system-integration", "type": "demand", "label": "扩容需求反馈", "mechanism": "利用率和终端需求变化形成新增设备订单，并反向影响集成与部件采购。", "source_ids": ["synthetic-spec"]}
+  ],
+  "sources": [
+    {
+      "id": "synthetic-spec",
+      "title": "Synthetic industry-map test specification",
+      "publisher": "PEVC Research Skills",
+      "url": "https://example.com/synthetic-industry-map",
+      "published_date": "2026-09-10",
+      "accessed_date": "2026-09-10",
+      "source_type": "synthetic_test",
+      "supports": ["All fictional nodes, companies, routes, metrics, economics, and edges in this smoke-test example"]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0",
+  "project_id": "synthetic-atlas",
+  "as_of_date": "2026-09-10",
+  "sources": [
+    {
+      "source_id": "deck-v1",
+      "title": "Synthetic management deck v1",
+      "source_type": "company-material",
+      "source_date": "2026-09-01",
+      "accessed_date": "2026-09-10",
+      "locator": "Illustrative pages 1-20",
+      "url": null,
+      "confidential": false,
+      "reliability_note": "Management-created fictional example; not externally verified."
+    },
+    {
+      "source_id": "cohort-export",
+      "title": "Synthetic subscription cohort export",
+      "source_type": "system-record",
+      "source_date": "2026-08-31",
+      "accessed_date": "2026-09-10",
+      "locator": "Illustrative workbook tab Cohorts",
+      "url": null,
+      "confidential": false,
+      "reliability_note": "Fictional system-level evidence created for validation."
+    }
+  ],
+  "facts": [
+    {
+      "fact_id": "f-business",
+      "subject": "Business model",
+      "statement": "Atlas sells orchestration software subscriptions and separately priced implementation services.",
+      "status": "management_claim",
+      "value": null,
+      "unit": null,
+      "currency": null,
+      "period": null,
+      "definition": "Management description",
+      "actual_or_forecast": "not-applicable",
+      "formula": null,
+      "source_ids": ["deck-v1"],
+      "confidence": "medium",
+      "decision_impact": "Defines whether recurring software economics can be separated from services.",
+      "notes": null
+    },
+    {
+      "fact_id": "f-arr",
+      "subject": "ARR",
+      "statement": "Illustrative ending subscription ARR is 12.0 million currency units.",
+      "status": "verified_fact",
+      "value": 12.0,
+      "unit": "million",
+      "currency": "CU",
+      "period": "2026-08-31",
+      "definition": "Contracted recurring subscription run-rate excluding implementation services",
+      "actual_or_forecast": "actual",
+      "formula": null,
+      "source_ids": ["cohort-export"],
+      "confidence": "high",
+      "decision_impact": "Starting point for growth, retention, and valuation analysis.",
+      "notes": null
+    },
+    {
+      "fact_id": "f-nrr",
+      "subject": "Net revenue retention",
+      "statement": "Illustrative NRR is 112%.",
+      "status": "calculation",
+      "value": 112.0,
+      "unit": "percent",
+      "currency": null,
+      "period": "Twelve months ended 2026-08-31",
+      "definition": "Ending subscription ARR from opening cohort divided by opening subscription ARR",
+      "actual_or_forecast": "actual",
+      "formula": "11.2 / 10.0 * 100",
+      "source_ids": ["cohort-export"],
+      "confidence": "medium",
+      "decision_impact": "Supports expansion but remains sensitive to cohort completeness.",
+      "notes": "Requires reconciliation to billing and general ledger records."
+    },
+    {
+      "fact_id": "f-services-risk",
+      "subject": "Delivery burden",
+      "statement": "Implementation services remain material and may constrain gross-margin scaling.",
+      "status": "inference",
+      "value": null,
+      "unit": null,
+      "currency": null,
+      "period": "2026 YTD",
+      "definition": "Analyst inference from disclosed delivery model",
+      "actual_or_forecast": "not-applicable",
+      "formula": null,
+      "source_ids": ["deck-v1"],
+      "confidence": "low",
+      "decision_impact": "Could reduce software-quality valuation and increase cash needs.",
+      "notes": "Needs project-level labor and gross-margin evidence."
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "c-repeatability",
+      "claim": "The subscription base demonstrates early expansion within retained customers.",
+      "supporting_fact_ids": ["f-arr", "f-nrr"],
+      "counterevidence_fact_ids": ["f-services-risk"],
+      "confidence": "medium",
+      "decision_implication": "Supports focused diligence but not final underwriting.",
+      "next_test": "Recalculate gross and net retention by cohort and reconcile to contracts, billing, and churn reasons.",
+      "owner": "Deal team",
+      "due_date": null
+    }
+  ],
+  "open_items": [
+    {
+      "item_id": "o-cohort-reconcile",
+      "priority": "P0",
+      "question": "Does reported NRR reconcile to customer contracts, billing, and churned accounts?",
+      "rationale": "The preliminary thesis depends on expansion and low churn.",
+      "evidence_requested": "Customer-level opening/ending ARR, contracts, invoices, cancellations, and cohort definitions",
+      "owner": "Deal team",
+      "status": "requested",
+      "due_date": null,
+      "consequence_if_unresolved": "Hold final IC and treat retention claim as provisional."
+    }
+  ],
+  "change_log": [
+    {
+      "date": "2026-09-10",
+      "change": "Initialized synthetic evidence bundle.",
+      "reason": "Demonstrate suite handoff and validator behavior.",
+      "source_ids": ["deck-v1", "cohort-export"]
+    }
+  ]
+}

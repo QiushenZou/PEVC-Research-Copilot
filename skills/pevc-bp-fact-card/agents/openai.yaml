@@ -1,0 +1,6 @@
+interface:
+  display_name: "PE/VC BP 事实卡"
+  short_description: "先把 BP、CIM 或项目材料中的事实、口径、冲突和缺口读清楚"
+  default_prompt: "Use $pevc-bp-fact-card to turn these project materials into a neutral, source-traceable fact card without giving an investment recommendation."
+policy:
+  allow_implicit_invocation: true

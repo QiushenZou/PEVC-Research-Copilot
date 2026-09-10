@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/pevc/evidence-bundle.schema.json",
+  "title": "PEVC evidence bundle",
+  "type": "object",
+  "required": ["schema_version", "project_id", "as_of_date", "sources", "facts", "claims", "open_items", "change_log"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "project_id": {"type": "string", "minLength": 1},
+    "as_of_date": {"type": "string", "format": "date"},
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source_id", "title", "source_type", "source_date", "accessed_date", "confidential"],
+        "properties": {
+          "source_id": {"type": "string", "minLength": 1},
+          "title": {"type": "string", "minLength": 1},
+          "source_type": {
+            "enum": ["company-material", "contractual", "system-record", "interview", "regulator", "filing", "company-primary", "third-party", "calculation-input"]
+          },
+          "source_date": {"type": ["string", "null"], "format": "date"},
+          "accessed_date": {"type": "string", "format": "date"},
+          "locator": {"type": ["string", "null"]},
+          "url": {"type": ["string", "null"]},
+          "confidential": {"type": "boolean"},
+          "reliability_note": {"type": ["string", "null"]}
+        },
+        "additionalProperties": true
+      }
+    },
+    "facts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["fact_id", "subject", "statement", "status", "source_ids", "confidence", "decision_impact"],
+        "properties": {
+          "fact_id": {"type": "string", "minLength": 1},
+          "subject": {"type": "string"},
+          "statement": {"type": "string"},
+          "status": {
+            "enum": ["verified_fact", "management_claim", "third_party_estimate", "calculation", "inference", "investment_view", "open_question", "conflict"]
+          },
+          "value": {},
+          "unit": {"type": ["string", "null"]},
+          "currency": {"type": ["string", "null"]},
+          "period": {"type": ["string", "null"]},
+          "definition": {"type": ["string", "null"]},
+          "actual_or_forecast": {"enum": ["actual", "forecast", "mixed", "not-applicable", "unknown"]},
+          "formula": {"type": ["string", "null"]},
+          "source_ids": {"type": "array", "items": {"type": "string"}},
+          "confidence": {"enum": ["high", "medium", "low", "unknown"]},
+          "decision_impact": {"type": "string"},
+          "notes": {"type": ["string", "null"]}
+        },
+        "additionalProperties": true
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim_id", "claim", "supporting_fact_ids", "counterevidence_fact_ids", "confidence", "decision_implication", "next_test"],
+        "properties": {
+          "claim_id": {"type": "string", "minLength": 1},
+          "claim": {"type": "string"},
+          "supporting_fact_ids": {"type": "array", "items": {"type": "string"}},
+          "counterevidence_fact_ids": {"type": "array", "items": {"type": "string"}},
+          "confidence": {"enum": ["high", "medium", "low", "unknown"]},
+          "decision_implication": {"type": "string"},
+          "next_test": {"type": "string"},
+          "owner": {"type": ["string", "null"]},
+          "due_date": {"type": ["string", "null"], "format": "date"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "open_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item_id", "priority", "question", "rationale", "evidence_requested", "status", "consequence_if_unresolved"],
+        "properties": {
+          "item_id": {"type": "string"},
+          "priority": {"enum": ["P0", "P1", "P2"]},
+          "question": {"type": "string"},
+          "rationale": {"type": "string"},
+          "evidence_requested": {"type": "string"},
+          "owner": {"type": ["string", "null"]},
+          "status": {"enum": ["not-started", "requested", "received", "in-review", "complete", "blocked", "red-flag"]},
+          "due_date": {"type": ["string", "null"], "format": "date"},
+          "consequence_if_unresolved": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "change_log": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date", "change", "reason"],
+        "properties": {
+          "date": {"type": "string", "format": "date"},
+          "change": {"type": "string"},
+          "reason": {"type": "string"},
+          "source_ids": {"type": "array", "items": {"type": "string"}}
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

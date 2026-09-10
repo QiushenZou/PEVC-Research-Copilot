@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "project_id": "synthetic-atlas",
+  "display_name": "Project Atlas (fictional)",
+  "as_of_date": "2026-09-10",
+  "workflow_stage": "preliminary-ic",
+  "investment_type": "vc",
+  "scope": {
+    "company": "Atlas Systems",
+    "industry": "AI infrastructure software",
+    "product": "Workload orchestration software",
+    "geography": "Illustrative global market",
+    "time_horizon": "Current position and five-year investment case",
+    "included": ["software subscriptions", "implementation services", "customer deployment evidence"],
+    "excluded": ["hardware sales", "unrelated cloud services"]
+  },
+  "decision": {
+    "current_gate": "Preliminary IC",
+    "requested_authority": "Authorize focused customer and cohort diligence",
+    "deadline": null,
+    "permitted_vocabulary": ["decline", "hold", "continue diligence", "approve preliminary work"]
+  },
+  "fund_criteria": [
+    {
+      "criterion": "Stage",
+      "requirement": "Early growth software",
+      "status": "Pass"
+    }
+  ],
+  "materials": [
+    {
+      "name": "Synthetic management deck",
+      "version": "v1",
+      "coverage": "All illustrative pages",
+      "confidential": false
+    }
+  ],
+  "confidentiality": {
+    "classification": "public",
+    "external_sharing_allowed": true
+  }
+}

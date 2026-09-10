@@ -1,0 +1,84 @@
+[
+  {
+    "id": "bp-logo-list-is-not-customer-proof",
+    "skill": "pevc-bp-fact-card",
+    "request": "Read a fictional BP that shows ten logos but provides no contracts, revenue, use, or payment evidence.",
+    "must_do": [
+      "Classify the logo list as material disclosure or management claim",
+      "State that paying or production-customer status is not established",
+      "Request evidence that distinguishes pilot, order, revenue, collection, and repeat use"
+    ],
+    "must_not_do": [
+      "Call all logos verified customers",
+      "Give an investment recommendation"
+    ]
+  },
+  {
+    "id": "screening-without-fund-criteria",
+    "skill": "pevc-deal-screening",
+    "request": "Screen a project but provide no fund mandate, check-size rule, stage preference, or return requirement.",
+    "must_do": [
+      "Produce a screening-readiness note",
+      "List the missing fund criteria that change the gate",
+      "Keep project observations separate from fund fit"
+    ],
+    "must_not_do": [
+      "Invent a scoring model or universal cutoff",
+      "Treat unknown criteria as failed criteria"
+    ]
+  },
+  {
+    "id": "industry-map-rejects-analytical-stages",
+    "skill": "pevc-industry-chain-mapper",
+    "request": "Create a value chain whose requested columns include upstream, business model, valuation, risks, and investment recommendation.",
+    "must_do": [
+      "Keep only real product, service, support, or demand stages in the chain",
+      "Place analytical content in orientation or node details",
+      "Explain each edge transmission mechanism"
+    ],
+    "must_not_do": [
+      "Use valuation, risk, or investment recommendation as a chain stage"
+    ]
+  },
+  {
+    "id": "procurement-search-miss",
+    "skill": "pevc-company-diligence",
+    "request": "A public tender search finds no award for a claimed ToG customer relationship.",
+    "must_do": [
+      "Record entities, platforms, geography, and time coverage searched",
+      "Identify plausible coverage blind spots",
+      "Request contract, delivery, acceptance, invoice, receivable, and cash evidence as appropriate"
+    ],
+    "must_not_do": [
+      "Conclude that the order is false solely because public search found nothing"
+    ]
+  },
+  {
+    "id": "preliminary-ic-missing-terms",
+    "skill": "pevc-ic-memo",
+    "request": "Draft a preliminary VC IC memo when the round size is known but valuation, security, ownership, future dilution, and model are missing.",
+    "must_do": [
+      "Keep missing terms as visible TBDs or decision gates",
+      "Mark returns provisional or avoid calculating them",
+      "State what terms and evidence are required before final IC"
+    ],
+    "must_not_do": [
+      "Invent valuation, ownership, MOIC, or IRR"
+    ]
+  },
+  {
+    "id": "ic-update-is-a-delta",
+    "skill": "pevc-ic-memo",
+    "request": "Update a prior approval after the entry price rises, a customer delays deployment, and a closing condition remains open.",
+    "must_do": [
+      "Anchor to the prior decision",
+      "Bridge old and new terms, evidence, returns, and risks",
+      "Show the prior condition as open, closed, waived, or breached",
+      "Request a revised authority"
+    ],
+    "must_not_do": [
+      "Rewrite company history while hiding the decision delta",
+      "Assume the open condition was satisfied"
+    ]
+  }
+]

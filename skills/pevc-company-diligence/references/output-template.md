@@ -10,7 +10,7 @@ Adapt the length to the decision stage. Do not fill sections with boilerplate wh
 - Decisive supporting evidence and disconfirming evidence; include only what is material
 - Unresolved gates and the next highest-value diligence actions
 
-For a BP fact card, replace the recommendation with `facts established / material not disclosed / external verification required`. For a rapid screen, add the fund-criteria table and separate `Fail` from `Unclear`.
+If the work is a focused verification sprint, replace the overall recommendation with `claim supported / partly supported / contradicted / inconclusive`, followed by the decision consequence.
 
 ## 2. Review scope and material register
 

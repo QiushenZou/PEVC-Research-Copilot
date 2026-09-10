@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "project_id": "synthetic-atlas",
+  "as_of_date": "2026-09-10",
+  "decision_stage": "preliminary-ic",
+  "requested_authority": "Authorize focused customer and cohort diligence",
+  "recommendation": "approve-preliminary-work",
+  "terms": {
+    "currency": "CU million",
+    "pre_money": 80.0,
+    "primary_proceeds": 20.0,
+    "secondary_proceeds": 0.0,
+    "post_money": 100.0,
+    "new_money_ownership_pct": 20.0,
+    "enterprise_value": 90.0,
+    "equity_value": 80.0,
+    "debt": 15.0,
+    "cash": 5.0
+  },
+  "return_scenarios": [
+    {
+      "name": "Downside",
+      "moic": 1.2,
+      "irr_pct": 3.71,
+      "holding_years": 5.0,
+      "provisional": true,
+      "narrative": "Illustrative slower expansion, additional financing, and limited exit uplift."
+    },
+    {
+      "name": "Base",
+      "moic": 2.0,
+      "irr_pct": 14.87,
+      "holding_years": 5.0,
+      "provisional": true,
+      "narrative": "Illustrative retained expansion and moderate dilution; not an underwriting case."
+    },
+    {
+      "name": "Upside",
+      "moic": 3.0,
+      "irr_pct": 24.57,
+      "holding_years": 5.0,
+      "provisional": true,
+      "narrative": "Illustrative repeatable growth with improving delivery leverage."
+    }
+  ],
+  "thesis": [
+    {
+      "proposition": "Early customer expansion may support focused diligence.",
+      "claim_ids": ["c-repeatability"],
+      "falsifier": "Recalculated cohorts show contraction or services-driven reported expansion."
+    }
+  ],
+  "risks": [
+    {
+      "loss_mechanism": "Implementation intensity prevents gross-margin scaling.",
+      "trigger": "Services labor grows in line with subscription revenue.",
+      "response": "Require project-level cost and deployment evidence before final IC."
+    }
+  ],
+  "conditions": [],
+  "human_review_items": [
+    "Confirm the fictional valuation bridge is not reused as a real benchmark.",
+    "Reconcile customer cohorts before any final decision."
+  ],
+  "model_version": "synthetic-v1",
+  "evidence_bundle": "evidence-bundle.json"
+}

@@ -51,6 +51,10 @@ Write for an intelligent newcomer. Be concise but not simplistic.
 - Default navigation: trackpad two-finger pan and pinch zoom; mouse mode wheel zoom and drag pan. Clicking without dragging opens that node's detail.
 - Keep the map readable at first view; allow focus/zoom for detail rather than shrinking all text to fit.
 
+## Suite handoff
+
+When this map supports a live target-company workflow, return only decision-relevant industry conclusions to the project's evidence bundle: market boundary, target chain position, company-role evidence, profit-pool and bargaining-power hypotheses, technology-route choices, and the specific tests these create for the target. Do not copy the full map into the company record or treat representative industry participants as verified target relationships.
+
 ## References
 
 - Read [references/research-methodology.md](references/research-methodology.md) when defining stages, company roles, evidence status, or adjacent-market boundaries.

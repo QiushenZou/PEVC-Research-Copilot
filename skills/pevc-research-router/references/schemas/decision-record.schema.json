@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/pevc/decision-record.schema.json",
+  "title": "PEVC decision record",
+  "type": "object",
+  "required": ["schema_version", "project_id", "as_of_date", "decision_stage", "requested_authority", "recommendation", "thesis", "risks", "conditions", "human_review_items"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "project_id": {"type": "string"},
+    "as_of_date": {"type": "string", "format": "date"},
+    "decision_stage": {"enum": ["screening", "preliminary-ic", "final-ic", "update"]},
+    "requested_authority": {"type": "string"},
+    "recommendation": {"enum": ["decline", "hold", "continue-diligence", "approve-preliminary-work", "approve", "approve-with-conditions", "reconfirm", "reprice", "restructure", "reduce-size"]},
+    "terms": {
+      "type": "object",
+      "properties": {
+        "currency": {"type": ["string", "null"]},
+        "pre_money": {"type": ["number", "null"]},
+        "primary_proceeds": {"type": ["number", "null"]},
+        "secondary_proceeds": {"type": ["number", "null"]},
+        "post_money": {"type": ["number", "null"]},
+        "new_money_ownership_pct": {"type": ["number", "null"]},
+        "enterprise_value": {"type": ["number", "null"]},
+        "equity_value": {"type": ["number", "null"]},
+        "debt": {"type": ["number", "null"]},
+        "cash": {"type": ["number", "null"]}
+      },
+      "additionalProperties": true
+    },
+    "return_scenarios": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "moic", "irr_pct", "holding_years", "provisional", "narrative"],
+        "properties": {
+          "name": {"type": "string"},
+          "moic": {"type": ["number", "null"]},
+          "irr_pct": {"type": ["number", "null"]},
+          "holding_years": {"type": ["number", "null"]},
+          "provisional": {"type": "boolean"},
+          "narrative": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "thesis": {"type": "array", "items": {"type": "object"}},
+    "risks": {"type": "array", "items": {"type": "object"}},
+    "conditions": {"type": "array", "items": {"type": "object"}},
+    "human_review_items": {"type": "array", "items": {"type": "string"}},
+    "model_version": {"type": ["string", "null"]},
+    "evidence_bundle": {"type": ["string", "null"]}
+  },
+  "additionalProperties": true
+}

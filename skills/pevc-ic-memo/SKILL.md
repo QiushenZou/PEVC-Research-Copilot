@@ -67,6 +67,7 @@ Anchor the update to the prior memo and decision. State what changed, why it cha
 - Keep the main memo sufficient for the decision; use appendices for detailed extracts and calculations, never to hide a critical uncertainty.
 - End with an action table showing condition/test, owner, deadline, evidence required, and consequence if failed.
 - When evidence is incomplete, deliver a clearly marked partial memo plus a prioritized evidence request rather than a polished fiction.
+- In a structured suite workflow, consume the existing `evidence-bundle.json`, write the decision and model references to `decision-record.json`, and run the router's project-bundle validator. A passing validator confirms structural and arithmetic checks only; it does not prove the investment conclusion.
 
 ## Writing standard
 

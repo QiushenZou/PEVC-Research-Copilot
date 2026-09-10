@@ -2,13 +2,13 @@
 
 ## What this repository contains
 
-The repository contains three independently written Codex skills covering industry-chain mapping, company diligence, and IC memo preparation. Their shared methodology is evidence-first: define the decision and scope, separate facts from claims and inference, reconcile metrics, test disconfirming evidence, and make unresolved questions visible.
+The repository contains six independently written Codex skills covering workflow routing, BP fact extraction, deal screening, industry-chain mapping, company diligence, and IC memo preparation. Their shared methodology is evidence-first: define the decision and scope, separate facts from claims and inference, reconcile metrics, test disconfirming evidence, and make unresolved questions visible.
 
 The skills use general PE/VC concepts and public-domain financial terminology. They do not include data-room documents, internal investment-committee materials, proprietary models, customer lists, interview transcripts, or credentials.
 
 ## External references
 
-Public skill ecosystems were surveyed to understand task coverage and packaging conventions. In particular, the public [N.E.I. PEVC Skill Library](https://nei-pevc.com/) task map was used as a comparative reference for the breadth of PE/VC workflows. No N.E.I. Skill or Workflow text, private content, MCP token, or downloaded library artifact is included here. N.E.I. has not endorsed this repository, and its name and marks remain its owners' property.
+Public skill ecosystems were surveyed to understand task coverage and packaging conventions. In particular, the public [N.E.I. PEVC Skill Library](https://nei-pevc.com/) and its MCP architecture were used as comparative references for task routing, workflow composition, research discipline, and connector discovery. The implementation, schemas, validators, examples, and instructions in this repository are independently written. No N.E.I. private content, MCP token, user library, or downloaded proprietary artifact is included here. N.E.I. has not endorsed this repository, and its name and marks remain its owners' property.
 
 The industry-map schema includes TSMC and a public TSMC webpage as a concrete formatting example. This is illustrative source metadata, not copied research content or an endorsement.
 
