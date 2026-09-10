@@ -1,0 +1,6 @@
+interface:
+  display_name: "PE/VC 产业链地图"
+  short_description: "研究真实上下游并生成含公司角色、技术路线、利润池与节点精读的交互地图"
+  default_prompt: "Use $pevc-industry-chain-mapper to research a true upstream-to-downstream industry chain and generate a source-backed interactive map with company roles, technology routes, node economics, transmission mechanisms, and click-open node explainers."
+policy:
+  allow_implicit_invocation: true
